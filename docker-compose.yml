@@ -16,6 +16,7 @@ services:
 #            - DB_DATABASE=animatrix
 #            - DB_USERNAME=laravel
 #            - DB_PASSWORD=${DB_PASSWORD}
+#            - APP_ENV=production
 #        depends_on:
 #            - mysql
 

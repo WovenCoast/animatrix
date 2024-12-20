@@ -1,0 +1,29 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$enable-rounded: false;
+$primary: #d2450f;
+$body-color: #6c6d68;
+$navbar-light-brand-color: #4a4e49;
+$card-spacer-x: 1em;
+$card-spacer-y: 1.5em;
+@import "bootstrap/scss/bootstrap";
+@import 'flatpickr/dist/flatpickr.css';
+@import '@javaabu/js-utilities/src/scss/bootstrap-5/fileinput.scss';
+
+body {
+    font-family: 'Poppins', serif;
+    color: #6c6d68;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled) {
+    background-color: $primary !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
+    background-color: white !important;
+    color: $primary !important;
+}
