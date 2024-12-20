@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Javaabu\Helpers\Media\UpdateMedia;
@@ -27,12 +28,17 @@ class Article extends Model implements HasMedia
 
     protected $casts = [
         'published' => 'boolean',
-        'published_at' => 'datetime'
+        'published_at' => 'datetime:Y-m-d H:i',
     ];
 
     protected $appends = [
         "featured_image",
     ];
+
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i');
+    }
 
     public function getFeaturedImageAttribute()
     {
@@ -56,7 +62,7 @@ class Article extends Model implements HasMedia
 
         $this
             ->addMediaConversion('large')
-            ->fit(Fit::Crop, 1232, 528)
+            ->fit(Fit::Contain, 1232, 528)
             ->nonQueued();
 
         $this->addMediaConversion('thumb')

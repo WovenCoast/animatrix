@@ -24,3 +24,4 @@ yarn-error.log
 /.zed
 /mysql-data
 /resources/fonts/fontawesome/*
+/storage/media-library/temp/

@@ -40,10 +40,9 @@ class UpdateArticleRequest extends FormRequest
             ],
             'excerpt' => '',
             'content' => '',
-            'published' => [
-                'boolean',
-            ],
-            'published_at' => '',
+            'published' => 'boolean',
+//            'published_at' => 'required_if:published,1|date_format:Y-m-d H:i:s',
+            'published_at' => 'required_if:published,1|date',
             'featured_image' => 'mimes:jpeg,png,gif,tiff,svg',
         ];
     }

@@ -25,10 +25,15 @@ class ArticleController extends Controller
                 ->where("title", "like", "%{$request->get('search')}%")
                 ->orWhere("excerpt", "like", "%{$request->get('search')}%");
         }
-        if ($request->has('sortBy')) {
+
+        $articles->orderByDesc($request->get('date_field') ?? 'created_at');
+        if ($request->has('date_from')) {
             $articles
-                ->orderBy($request->get('sortBy'))
-                ->orderByDesc($request->get('sortDesc'));
+                ->whereDate('created_at', '>=', $request->get('date_from'));
+        }
+        if ($request->has('date_to')) {
+            $articles
+                ->whereDate('created_at', '<=', $request->get('date_to'));
         }
 
         if ((! $request->has('drafts')) || $request->boolean('drafts') === false) {
@@ -94,7 +99,7 @@ class ArticleController extends Controller
      */
     public function destroy(Request $request, Article $article): void
     {
-        $request->session()->flash('success', 'Article deleted successfully.');
         $article->delete();
+        $request->session()->flash('success', 'Article deleted successfully.');
     }
 }

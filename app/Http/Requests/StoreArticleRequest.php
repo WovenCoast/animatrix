@@ -19,6 +19,7 @@ class StoreArticleRequest extends FormRequest
     {
         $this->merge([
             'published' => $this->has('published'),
+            'published_at' => $this->input('published_at') ?? now(),
         ]);
     }
 
@@ -34,10 +35,8 @@ class StoreArticleRequest extends FormRequest
             'slug' => 'required|unique:articles|max:255',
             'excerpt' => 'required',
             'content' => 'required',
-            'published' => [
-                'boolean',
-            ],
-            'published_at' => '',
+            'published' => 'boolean',
+            'published_at' => 'required_if:published,1|date',
             'featured_image' => 'required|mimes:jpeg,png,gif,tiff,svg',
         ];
     }
