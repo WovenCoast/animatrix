@@ -1,24 +1,24 @@
 services:
     # Laravel Application Service
-#    animatrix:
-#        build:
-#            context: .
-#            dockerfile: Dockerfile
-#        container_name: animatrix
-#        volumes:
-#            - ./:/var/www/html
-#        ports:
-#            - "8000:8000"
-#        environment:
-#            - DB_CONNECTION=mysql
-#            - DB_HOST=mysql
-#            - DB_PORT=3306
-#            - DB_DATABASE=animatrix
-#            - DB_USERNAME=laravel
-#            - DB_PASSWORD=${DB_PASSWORD}
-#            - APP_ENV=production
-#        depends_on:
-#            - mysql
+    animatrix:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: animatrix
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "8000:8000"
+        environment:
+            - DB_CONNECTION=mysql
+            - DB_HOST=mysql
+            - DB_PORT=3306
+            - DB_DATABASE=animatrix
+            - DB_USERNAME=laravel
+            - DB_PASSWORD=${DB_PASSWORD}
+            - APP_ENV=production
+        depends_on:
+            - animatrix-db
 
     # MySQL Service
     animatrix-db:
